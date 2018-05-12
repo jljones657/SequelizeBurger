@@ -2,11 +2,11 @@
   <div class="jumbotron col-lg-4 col-md-12 col-sm-12 col-xs-12">
     <div class="container row">
       <div class="container blogo col-lg-12 col-md-4">
-        <img alt="B logo" class="responsive img-fluid w-80"  src="/assets/img/burger.gif">
+        <img alt="B logo" class="responsive img-fluid w-80"  src="/assets/images/burger.png">
         <br>
       </div>
       
-      <div class="container col-lg-11 col-md-9">
+      <div class="container col-lg-12 col-md-8">
         <h1>Burgers</h1> 
 
         <form class="create-form">
@@ -36,16 +36,25 @@
 
       <div class="card order-cards mw-100">
         <div class="card-header text-center">
-          <h2>Burger Ordered: </h2>
+          <h2>Burger Orders: </h2>
         </div>
+
         <div class="card-body">
-          
           <ul class="list-unstyled">
+            
+            
             {{#each burgers}}
-              {{#if order}}
-                {{> burgers/burger-block order=false}}
-              {{/if}}
+            {{#if orderUp}}
+              <li>
+              
+                {{id}} : {{name}}
+                <br>
+                <button class="change-order btn btn-primary" data-id="{{this.id}}" data-neworder="{{orderUp}}">Deliver</button>
+              
+              </li>
+            {{/if}} 
             {{/each}}
+          
           </ul>
         </div>
       </div>
@@ -55,12 +64,15 @@
         <div class="card-header text-center">
           <h2>Burgers Delivered: </h2>
         </div>
+
         <div class="card-body">
-          
           <ul class="list-unstyled">
             {{#each burgers}}
-              {{#unless order}}
-                {{> burgers/burger-block order=true}}
+              {{#unless orderUp}}
+                {{id}} : {{name}}
+                <br>
+                <button class="change-order btn btn-danger" data-id="{{this.id}}" data-neworder="{{orderUp}}">Ugh, gross! Send it back!</button>
+                <button class="delete-burger btn btn-warning devour" data-id="{{this.id}}">Eat da Burger!</button>
               {{/unless}}   
             {{/each}}
           </ul>
@@ -72,4 +84,8 @@
   </div>
 </div>
 
+        
+
+
+   
 
